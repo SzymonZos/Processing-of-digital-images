@@ -15,9 +15,15 @@ function filteredImg = abstractFilter(img, maskSize, filterType, varargin)
     for k = 1 : img_Z
         for i = 1 + margin_X : img_X - margin_X
             for j = 1 + margin_Y : img_Y - margin_Y
-                imgSubMatrix = img(i - margin_X : i + margin_X, j - margin_X : j + margin_X, k);
-                imgSubMatrix = reshape(imgSubMatrix, 1, []);
-                filteredImg(i,j,k) = filterType(imgSubMatrix);
+                if isempty(varargin)
+                    imgSubMatrix = img(i - margin_X : i + margin_X, j - margin_X : j + margin_X, k);
+                    imgSubMatrix = reshape(imgSubMatrix, 1, []);
+                    filteredImg(i,j,k) = filterType(imgSubMatrix);
+                else
+                    imgSubMatrix = img(i - margin_X : i + margin_X, j - margin_X : j + margin_X, :);
+                    imgSubMatrix = reshape(imgSubMatrix, 1, [], 3);
+                    filteredImg(i,j,:) = filterType(imgSubMatrix);
+                end
             end
         end
     end
