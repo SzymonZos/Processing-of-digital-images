@@ -10,7 +10,9 @@ function filteredPixel = filterVMF(imgSubMatrix, p)
         end
     end
     
-    medianIndex = ceil(imgSubMatrix_X * imgSubMatrix_Y / 2);
-    [~, previousIndex] = sort(R);
-    filteredPixel = imgSubMatrix(1,previousIndex(medianIndex),:);
+   % medianIndex = ceil(imgSubMatrix_X * imgSubMatrix_Y / 2);
+   % [~, previousIndex] = sort(R);
+   % filteredPixel = imgSubMatrix(1,previousIndex(medianIndex),:);
+   [~, index] = min(R);
+   filteredPixel = imgSubMatrix(1,index,:);
 end

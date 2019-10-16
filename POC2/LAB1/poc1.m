@@ -18,9 +18,9 @@ imgs_comp = [img_gray imgs img_gray imgs_filtered_LUM];
 titles = appendPSNR(imgs_comp, titles);
 show_results(imgs_comp, titles);
 %% Median && LUM comparison - gray
-titles(2:4) = cellfun(@(str)strcat(str, ' - median'), titles(2:4), 'UniformOutput', 0);
 imgs_comp = [img_gray imgs_filtered_median img_gray imgs_filtered_LUM];
 titles = appendPSNR(imgs_comp, titles);
+titles(2:4) = cellfun(@(str)strcat(str, ' - median'), titles(2:4), 'UniformOutput', 0);
 show_results(imgs_comp, titles);
 
 
@@ -40,9 +40,9 @@ imgs_comp = [img imgs img imgs_filtered_LUM];
 titles = appendPSNR(imgs_comp, titles);
 show_results(imgs_comp, titles);
 %% Median && LUM comparison - RGB
-titles(2:4) = cellfun(@(str)strcat(str, ' - median'), titles(2:4), 'UniformOutput', 0);
 imgs_comp = [img imgs_filtered_median img imgs_filtered_LUM];
 titles = appendPSNR(imgs_comp, titles);
+titles(2:4) = cellfun(@(str)strcat(str, ' - median'), titles(2:4), 'UniformOutput', 0);
 show_results(imgs_comp, titles);
 
 
