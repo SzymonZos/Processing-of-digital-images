@@ -1,4 +1,4 @@
-function filteredImg = abstractFilter(img, maskSize, type, varargin)
+function filteredImg = abstractFilter(img, maskSize, filterType)
     img = double(img);
     filteredImg = img;
 
@@ -12,11 +12,7 @@ function filteredImg = abstractFilter(img, maskSize, type, varargin)
             for j = 1 + margin_Y : img_Y - margin_Y
                 imgSubMatrix = img(i - margin_X : i + margin_X, j - margin_X : j + margin_X, k);
                 imgSubMatrix = reshape(imgSubMatrix, 1, []);
-                if isempty(varargin)
-                    filteredImg(i,j,k) = type(imgSubMatrix);
-                else
-                    filteredImg(i,j,k) = type(imgSubMatrix, varargin{1});
-                end
+                filteredImg(i,j,k) = filterType(imgSubMatrix);
             end
         end
     end
