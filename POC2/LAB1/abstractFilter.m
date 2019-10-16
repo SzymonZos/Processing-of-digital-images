@@ -1,4 +1,4 @@
-function filteredImg = abstractFilter(img, maskSize, filterType)
+function filteredImg = abstractFilter(img, maskSize, filterType, varargin)
     img = double(img);
     filteredImg = img;
 
@@ -7,6 +7,11 @@ function filteredImg = abstractFilter(img, maskSize, filterType)
 
     margin_X = floor(mask_X/2);
     margin_Y = floor(mask_Y/2);
+    
+    if ~isempty(varargin)
+        img_Z = 1;
+    end
+    
     for k = 1 : img_Z
         for i = 1 + margin_X : img_X - margin_X
             for j = 1 + margin_Y : img_Y - margin_Y
@@ -16,4 +21,5 @@ function filteredImg = abstractFilter(img, maskSize, filterType)
             end
         end
     end
+    filteredImg = uint8(filteredImg);
 end
