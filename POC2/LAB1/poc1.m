@@ -47,9 +47,9 @@ show_results(imgs_comp, titles);
 
 
 %% VMF filter - VMF
-imgs{1} = imnoise(img, 'salt & pepper', 0.02); titles{2} = 'Noise 2%'; titles{6} = 'Noise 2% - VMF';
-imgs{2} = imnoise(img, 'salt & pepper', 0.05); titles{3} = 'Noise 5%'; titles{7} = 'Noise 5% - VMF';
-imgs{3} = imnoise(img, 'salt & pepper', 0.20); titles{4} = 'Noise 20%'; titles{8} = 'Noise 20% - VMF';
+titles{2} = 'Noise 2%'; titles{6} = 'Noise 2% - VMF';
+titles{3} = 'Noise 5%'; titles{7} = 'Noise 5% - VMF';
+titles{4} = 'Noise 20%'; titles{8} = 'Noise 20% - VMF';
 
 imgs_filtered_VMF = cellfun(@(img)uint8(abstractFilter(img, [3 3], @(subImg)filterVMF(subImg, 2), 1)), imgs, 'UniformOutput', 0);
 imgs_comp = [img imgs img imgs_filtered_VMF];
