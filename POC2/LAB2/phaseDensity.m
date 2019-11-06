@@ -1,3 +1,3 @@
 function phaseDensityImg = phaseDensity(img)
-    phaseDensityImg = angle(fftshift(fft2(img)));
+    phaseDensityImg = mat2gray(angle(fftshift(fft2(img))));
 end

@@ -1,3 +1,5 @@
 function spectralDensityImg = spectralDensity(img)
-    spectralDensityImg = log(1+abs(fftshift(fft2(img))));
+    img = mat2gray(img);
+    temp = fftshift(fft2(img));
+    spectralDensityImg = mat2gray(log(1+abs(temp)));   
 end
