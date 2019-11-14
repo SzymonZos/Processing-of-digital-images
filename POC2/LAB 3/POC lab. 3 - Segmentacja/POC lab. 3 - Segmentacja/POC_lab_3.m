@@ -1,5 +1,5 @@
 img_2 = imread('mouse.jpg');
-img_2 = rgb2gray(img);
+img_2 = rgb2gray(img_2);
 img = imread('coins_512x512.bmp');
 %% 1, 2, 3
 exercise_1(img);
