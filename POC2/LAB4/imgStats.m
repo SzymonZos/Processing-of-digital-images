@@ -1,7 +1,7 @@
 function [K, C, M] = imgStats(img)
     S = bwarea(img);
-    L = bwperim(img);
-    L = sum(L(:));
+    L = regionprops(img, 'Perimeter');
+    L = L.Perimeter;
     
     K = 4 * pi * S / L^2;
     C = 2 * sqrt(S / pi);
