@@ -3,7 +3,6 @@
 
 close all; clear; clc;
 
-
 %% Input args (and print them)
 
 k = 2;     % number of clusters
