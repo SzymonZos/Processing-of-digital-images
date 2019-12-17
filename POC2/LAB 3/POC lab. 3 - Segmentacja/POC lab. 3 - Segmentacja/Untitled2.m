@@ -1,4 +1,6 @@
-img = imread('coins_512x512.bmp');
+%%load
+clear all
+img = imread('obrazki/coins.bmp');
 %% Zadanie 1, 2, 3
 figure;
 subplot(2, 4, 1);
