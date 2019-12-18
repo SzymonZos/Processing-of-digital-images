@@ -14,7 +14,7 @@ for filename, img in originalImages.items():
     img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
     vectorized = np.float32(img.reshape((-1, 3)))
     criteria = (cv2.TERM_CRITERIA_EPS + cv2.TERM_CRITERIA_MAX_ITER, 10, 1.0)
-    for quantizationLevels in range(1, 8):
+    for quantizationLevels in range(1, 9):
         attempts = 10
         quantisedImages = list()
         for cluster in initClusters:
@@ -27,5 +27,4 @@ for filename, img in originalImages.items():
             plt.subplot(1, 3, 2 + index), plt.imshow(quantisedImg)
             plt.title(title % 2 ** quantizationLevels + '\nPSNR = ' + str(cv2.PSNR(img, quantisedImg)))
             plt.xticks([]), plt.yticks([])
-        plt.savefig(r'{0}\{1}_{2}'.format(outputPath, 2 ** quantizationLevels, filename), format='png')
-        plt.show()
+        plt.savefig(r'{0}\{1}_{2}'.format(outputPath, 2 ** quantizationLevels, filename), format='png', bbox_inches='tight')
