@@ -1,0 +1,7 @@
+Image,kmeans PSNR,kmeans elapsed time,kmeans++ PSNR,kmeans++ elapsed time
+2_baboon.bmp,15.901,0.236,15.902,0.2493
+2_img_001.bmp,15.401,0.2381,15.401,0.2524
+2_img_002.bmp,17.058,0.3598,17.058,0.3351
+2_img_003.bmp,16.824,0.29,16.824,0.3096
+2_img_004.bmp,17.298,0.2261,17.298,0.2818
+2_lena.bmp,19.251,0.2148,19.251,0.2403

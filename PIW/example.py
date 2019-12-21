@@ -1,12 +1,14 @@
-import numpy as np
-import cv2
-import matplotlib.pyplot as plt
 import os
+import csv
+import cv2
 import time
+import numpy as np
+import matplotlib.pyplot as plt
 from collections import defaultdict
 
 projectPath = os.path.dirname(os.path.abspath(__file__))
-logFile = open(projectPath + r'\logs.txt', 'w')
+logFile = open(projectPath + r'\logs.csv', 'w', newline='')
+logWriter = csv.writer(logFile)
 inputPath = projectPath + r'\images'
 outputPath = projectPath + r'\output-dir'
 originalImages = {file: cv2.imread(r'{0}\{1}'.format(inputPath, file)) for file in os.listdir(inputPath)}
@@ -30,28 +32,34 @@ def perform_algorithms(img, quantization_levels):
     return quantization_data
 
 
-def save_results(filename, img, quantization_levels, quantization_data):
+def save_results(filename, img, quantization_level, quantization_data):
+    output_filename = r'\{0}_{1}'.format(2 ** quantization_level, filename)
+    data_to_log = [output_filename[1:]]
     plt.figure(figsize=(20, 8))
     plt.subplot(1, 3, 1), plt.imshow(img)
     plt.title('Original image'), plt.xticks([]), plt.yticks([])
     for index, algorithm_name in enumerate(quantization_data):
         plt.subplot(1, 3, 2 + index), plt.imshow(quantization_data[algorithm_name]['image'])
-        title = quantization_data[algorithm_name]['title'] % 2 ** quantization_levels + \
-                '\nPSNR = ' + str(cv2.PSNR(img, quantization_data[algorithm_name]['image']))
-        logFile.write(title + '\n')
+        psnr = f"{cv2.PSNR(img, quantization_data[algorithm_name]['image']):.5}"
+        elapsed_time = f"{quantization_data[algorithm_name]['elapsed_time']:.4}"
+        title = quantization_data[algorithm_name]['title'] % 2 ** quantization_level + \
+            '\nPSNR = ' + psnr + ', elapsed time = ' + elapsed_time
         plt.title(title), plt.xticks([]), plt.yticks([])
-    output_filename = r'\{0}_{1}'.format(2 ** quantization_levels, filename)
-    logFile.write(output_filename + '\n\n\n')
+        data_to_log.extend([psnr, elapsed_time])
     plt.savefig(outputPath + output_filename, format='png', bbox_inches='tight')
+    logWriter.writerow(data_to_log)
 
 
-# łącznie 10 obrazów; 10 próbek dla każdego algorytmu
 def main():
-    for filename, img in originalImages.items():
-        img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
-        for quantization_levels in range(1, 2):  # poziomy od 8 od 256
-            quantization_data = perform_algorithms(img, quantization_levels)
-            save_results(filename, img, quantization_levels, quantization_data)
+    logWriter.writerow(['Image', 'kmeans PSNR', 'kmeans elapsed time',
+                        'kmeans++ PSNR', 'kmeans++ elapsed time'])
+    for iteration in range(11):
+        for filename, img in originalImages.items():
+            img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
+            for quantization_level in range(3, 9):
+                quantization_data = perform_algorithms(img, quantization_level)
+                save_results(filename, img, quantization_level, quantization_data)
+    logFile.close()
 
 
 if __name__ == '__main__':

@@ -1,30 +1,42 @@
 Quantised image using k-means algorithm, where K = 2
-PSNR = 15.900961662179762
+PSNR = 15.901elapsed time = 0.188496
 Quantised image using k-means++ algorithm, where K = 2
-PSNR = 15.90153686930972
+PSNR = 15.9015elapsed time = 0.224911
 \2_baboon.bmp
+
+
 Quantised image using k-means algorithm, where K = 2
-PSNR = 15.400589853123929
+PSNR = 15.4006elapsed time = 0.201462
 Quantised image using k-means++ algorithm, where K = 2
-PSNR = 15.400589853123929
+PSNR = 15.4006elapsed time = 0.251329
 \2_img_001.bmp
+
+
 Quantised image using k-means algorithm, where K = 2
-PSNR = 17.057609427759374
+PSNR = 17.0576elapsed time = 0.268297
 Quantised image using k-means++ algorithm, where K = 2
-PSNR = 17.057505251780192
+PSNR = 17.0575elapsed time = 0.315157
 \2_img_002.bmp
+
+
 Quantised image using k-means algorithm, where K = 2
-PSNR = 16.824283315907145
+PSNR = 16.8243elapsed time = 0.231382
 Quantised image using k-means++ algorithm, where K = 2
-PSNR = 16.82428642613712
+PSNR = 16.8243elapsed time = 0.248841
 \2_img_003.bmp
+
+
 Quantised image using k-means algorithm, where K = 2
-PSNR = 17.298299752192126
+PSNR = 17.2983elapsed time = 0.130652
 Quantised image using k-means++ algorithm, where K = 2
-PSNR = 17.298271703934308
+PSNR = 17.2983elapsed time = 0.181515
 \2_img_004.bmp
+
+
 Quantised image using k-means algorithm, where K = 2
-PSNR = 19.251098852968333
+PSNR = 19.2511elapsed time = 0.158621
 Quantised image using k-means++ algorithm, where K = 2
-PSNR = 19.251098852968333
+PSNR = 19.2511elapsed time = 0.190491
 \2_lena.bmp
+
+
