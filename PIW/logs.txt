@@ -1,0 +1,30 @@
+Quantised image using k-means algorithm, where K = 2
+PSNR = 15.900961662179762
+Quantised image using k-means++ algorithm, where K = 2
+PSNR = 15.90153686930972
+\2_baboon.bmp
+Quantised image using k-means algorithm, where K = 2
+PSNR = 15.400589853123929
+Quantised image using k-means++ algorithm, where K = 2
+PSNR = 15.400589853123929
+\2_img_001.bmp
+Quantised image using k-means algorithm, where K = 2
+PSNR = 17.057609427759374
+Quantised image using k-means++ algorithm, where K = 2
+PSNR = 17.057505251780192
+\2_img_002.bmp
+Quantised image using k-means algorithm, where K = 2
+PSNR = 16.824283315907145
+Quantised image using k-means++ algorithm, where K = 2
+PSNR = 16.82428642613712
+\2_img_003.bmp
+Quantised image using k-means algorithm, where K = 2
+PSNR = 17.298299752192126
+Quantised image using k-means++ algorithm, where K = 2
+PSNR = 17.298271703934308
+\2_img_004.bmp
+Quantised image using k-means algorithm, where K = 2
+PSNR = 19.251098852968333
+Quantised image using k-means++ algorithm, where K = 2
+PSNR = 19.251098852968333
+\2_lena.bmp

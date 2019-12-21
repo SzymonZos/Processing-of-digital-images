@@ -3949,7 +3949,11 @@
         <option value="R (&gt;= 3.1.2)" />
         <option value="bibtex" />
         <option value="https://cloud.r-project.org/src/contrib" />
+<<<<<<< Updated upstream
         <option value="0.4.2" />
+=======
+        <option value="0.4.2.1" />
+>>>>>>> Stashed changes
         <option value="R (&gt;= 3.0.2)" />
         <option value="biclique" />
         <option value="https://cloud.r-project.org/src/contrib" />
@@ -10855,10 +10859,13 @@
         <option value="https://cloud.r-project.org/src/contrib" />
         <option value="0.1.0" />
         <option value="R (&gt;= 3.4.0)" />
+<<<<<<< Updated upstream
         <option value="DCEM" />
         <option value="https://cloud.r-project.org/src/contrib" />
         <option value="2.0.0" />
         <option value="R(&gt;= 3.5.0)" />
+=======
+>>>>>>> Stashed changes
         <option value="dcemriS4" />
         <option value="https://cloud.r-project.org/src/contrib" />
         <option value="0.55" />
@@ -21967,10 +21974,13 @@
         <option value="https://cloud.r-project.org/src/contrib" />
         <option value="3.0.3" />
         <option value="R (&gt;= 3.2.2)" />
+<<<<<<< Updated upstream
         <option value="gwsem" />
         <option value="https://cloud.r-project.org/src/contrib" />
         <option value="0.1.8" />
         <option value="R (&gt;= 3.5), OpenMx (&gt;= 2.15.5)" />
+=======
+>>>>>>> Stashed changes
         <option value="GWsignif" />
         <option value="https://cloud.r-project.org/src/contrib" />
         <option value="1.2" />
@@ -61393,7 +61403,11 @@
         <option value="R (&gt;= 2.4.0), Kendall" />
       </list>
     </option>
+<<<<<<< Updated upstream
     <option name="lastUpdate" value="1576878441662" />
+=======
+    <option name="lastUpdate" value="1576923163455" />
+>>>>>>> Stashed changes
     <option name="repoUrls">
       <list>
         <option value="@CRAN@" />
