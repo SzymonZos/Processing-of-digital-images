@@ -9,15 +9,15 @@ originalImages = {file: cv2.imread(r'{0}\{1}'.format(inputPath, file)) for file 
 initClusters = (cv2.KMEANS_RANDOM_CENTERS, cv2.KMEANS_PP_CENTERS)
 titles = ['Quantised image using k-means algorithm, where K = %i',
           'Quantised image using k-means++ algorithm, where K = %i']
-
+# łącznie 10 obrazów; 10 próbek dla każdego algorytmu
 for filename, img in originalImages.items():
     img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
     vectorized = np.float32(img.reshape((-1, 3)))
     criteria = (cv2.TERM_CRITERIA_EPS + cv2.TERM_CRITERIA_MAX_ITER, 10, 1.0)
-    for quantizationLevels in range(1, 9):
+    for quantizationLevels in range(1, 9): # poziomy od 8 od 256
         attempts = 10
         quantisedImages = list()
-        for cluster in initClusters:
+        for cluster in initClusters: # tu zmierzyć czas
             [ret, label, center] = cv2.kmeans(vectorized, 2 ** quantizationLevels, None, criteria, attempts, cluster)
             quantisedImages.append(np.uint8(center)[label.flatten()].reshape(img.shape))
         plt.figure(figsize=(20, 8))
