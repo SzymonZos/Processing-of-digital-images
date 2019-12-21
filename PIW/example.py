@@ -54,10 +54,10 @@ def main():
     logWriter.writerow(['Image', 'kmeans PSNR', 'kmeans elapsed time',
                         'kmeans++ PSNR', 'kmeans++ elapsed time'])
     plt.figure(figsize=(20, 8))
-    for iteration in range(2):
+    for iteration in range(10):
         for filename, img in originalImages.items():
             img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
-            for quantization_level in range(1, 2):
+            for quantization_level in range(3, 9):
                 quantization_data = perform_algorithms(img, quantization_level)
                 save_results(iteration, filename, img, quantization_level, quantization_data)
     logFile.close()
