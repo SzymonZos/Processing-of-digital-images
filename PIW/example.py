@@ -21,7 +21,7 @@ def perform_algorithms(img, quantization_levels):
     quantization_data = defaultdict(dict)
     vectorized = np.float32(img.reshape((-1, 3)))
     criteria = (cv2.TERM_CRITERIA_EPS + cv2.TERM_CRITERIA_MAX_ITER, 10, 1.0)
-    for (algorithm_name, algorithm_value), title in zip(algorithms.items(), titles):  # tu zmierzyć czas
+    for (algorithm_name, algorithm_value), title in zip(algorithms.items(), titles):
         start_timer = time.time()
         _, label, center = cv2.kmeans(vectorized, 2 ** quantization_levels, None, criteria, attempts=10,
                                       flags=algorithm_value)
@@ -32,10 +32,9 @@ def perform_algorithms(img, quantization_levels):
     return quantization_data
 
 
-def save_results(filename, img, quantization_level, quantization_data):
-    output_filename = r'\{0}_{1}'.format(2 ** quantization_level, filename)
-    data_to_log = [output_filename[1:]]
-    plt.figure(figsize=(20, 8))
+def save_results(iteration, filename, img, quantization_level, quantization_data):
+    output_filename = r'{0}_{1}'.format(2 ** quantization_level, filename)
+    data_to_log = [output_filename]
     plt.subplot(1, 3, 1), plt.imshow(img)
     plt.title('Original image'), plt.xticks([]), plt.yticks([])
     for index, algorithm_name in enumerate(quantization_data):
@@ -46,19 +45,21 @@ def save_results(filename, img, quantization_level, quantization_data):
             '\nPSNR = ' + psnr + ', elapsed time = ' + elapsed_time
         plt.title(title), plt.xticks([]), plt.yticks([])
         data_to_log.extend([psnr, elapsed_time])
-    plt.savefig(outputPath + output_filename, format='png', bbox_inches='tight')
+    plt.savefig(r'{0}\{1}_{2}'.format(outputPath, iteration, output_filename), format='png', bbox_inches='tight')
+    plt.clf()
     logWriter.writerow(data_to_log)
 
 
 def main():
     logWriter.writerow(['Image', 'kmeans PSNR', 'kmeans elapsed time',
                         'kmeans++ PSNR', 'kmeans++ elapsed time'])
-    for iteration in range(11):
+    plt.figure(figsize=(20, 8))
+    for iteration in range(2):
         for filename, img in originalImages.items():
             img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
-            for quantization_level in range(3, 9):
+            for quantization_level in range(1, 2):
                 quantization_data = perform_algorithms(img, quantization_level)
-                save_results(filename, img, quantization_level, quantization_data)
+                save_results(iteration, filename, img, quantization_level, quantization_data)
     logFile.close()
 
 
