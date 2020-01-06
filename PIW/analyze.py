@@ -23,18 +23,21 @@ for logType, log in sortedLogs.items():
         kmeansStatistics["stdev"][imageName][logType] \
             .append(f"{statistics.stdev([float(value) for value in values]):.4}")
 
-plt.figure()
-color = 'r^'
 x = [8, 16, 32, 64, 128, 256]
 for stat, data in kmeansStatistics.items():
     for image in data:
+        f = plt.figure(figsize=(12.8, 4.8), clear=True)
+        subplotIndex = 0
         for logType in sorted(kmeansStatistics[stat][image], key=lambda x: len(x)):
-            plt.plot(x, [float(value) for value in kmeansStatistics[stat][image][logType]], color)
             if "kmeans++" in logType:
-                logType = logType[len("kmeans++") + 1:]
-                plt.title(stat + ', ' + image + ', ' + logType), plt.legend(['kmeans', 'kmeans++'])
-                plt.savefig(r'{0}\stats\{1}_{2}_{3}.png'.format(projectPath, stat, image, logType), format='png')
-                plt.clf()
-                color = 'r^'
-            else:
+                logTypeShortcut = logType[len("kmeans++") + 1:]
+                plt.title(stat + ', ' + image + ', ' + logTypeShortcut), plt.legend(['kmeans', 'kmeans++'])
+                # plt.savefig(r'{0}\stats\{1}_{2}_{3}.png'.format(projectPath, stat, image, logType), format='png')
                 color = 'bo'
+            else:
+                subplotIndex += 1
+                color = 'r^'
+            f.add_subplot(1, 2, subplotIndex)
+            plt.plot(x, [float(value) for value in kmeansStatistics[stat][image][logType]], color)
+        f.show()
+
