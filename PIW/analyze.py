@@ -43,7 +43,7 @@ for image, logs in kmeansStatistics.items():
             plt.plot(x, [float(value) for value in kmeansStatistics[image][logType][stat]], color)
             if "kmeans++" in logType:
                 logTypeShortcut = logType[len("kmeans++") + 1:]
-                plt.title(stat + ', ' + image + ', ' + logTypeShortcut), plt.legend(['kmeans', 'kmeans++'])
+                plt.title(image + ': ' + logTypeShortcut + ' - ' + stat), plt.legend(['kmeans', 'kmeans++'])
     f.show()
     # plt.savefig(r'{0}\stats\{1}_{2}_{3}.png'.format(projectPath, stat, image, logType), format='png')
 
