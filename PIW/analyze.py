@@ -18,26 +18,33 @@ kmeansStatistics = defaultdict(lambda: defaultdict(lambda: defaultdict(list)))
 for logType, log in sortedLogs.items():
     for image, values in log.items():
         imageName = re.search(R"(?<=_).+(?=\.)", image).group(0)
-        kmeansStatistics["mean"][imageName][logType] \
+        kmeansStatistics[imageName][logType]["mean"] \
             .append(f"{statistics.mean([float(value) for value in values]):.5}")
-        kmeansStatistics["stdev"][imageName][logType] \
+        kmeansStatistics[imageName][logType]["stdev"] \
             .append(f"{statistics.stdev([float(value) for value in values]):.4}")
 
 x = [8, 16, 32, 64, 128, 256]
-for stat, data in kmeansStatistics.items():
-    for image in data:
-        f = plt.figure(figsize=(12.8, 4.8), clear=True)
-        subplotIndex = 0
-        for logType in sorted(kmeansStatistics[stat][image], key=lambda x: len(x)):
+
+for image, logs in kmeansStatistics.items():
+    f = plt.figure(figsize=(12.8, 9.6), clear=True)
+    for logType in sorted(logs, key=lambda log: len(log)):
+        if "PSNR" in logType:
+            subplotIndex = 0
+        else:
+            subplotIndex = 2
+        for stat in logs[logType]:
+            print(image + ', ' + logType + ', ' + stat + ', ' + str(subplotIndex))
+            if "kmeans++" in logType:
+                color = 'bo'
+            else:
+                color = 'r^'
+            subplotIndex += 1
+            f.add_subplot(2, 2, subplotIndex)
+            plt.plot(x, [float(value) for value in kmeansStatistics[image][logType][stat]], color)
             if "kmeans++" in logType:
                 logTypeShortcut = logType[len("kmeans++") + 1:]
                 plt.title(stat + ', ' + image + ', ' + logTypeShortcut), plt.legend(['kmeans', 'kmeans++'])
-                # plt.savefig(r'{0}\stats\{1}_{2}_{3}.png'.format(projectPath, stat, image, logType), format='png')
-                color = 'bo'
-            else:
-                subplotIndex += 1
-                color = 'r^'
-            f.add_subplot(1, 2, subplotIndex)
-            plt.plot(x, [float(value) for value in kmeansStatistics[stat][image][logType]], color)
-        f.show()
+    f.show()
+    # plt.savefig(r'{0}\stats\{1}_{2}_{3}.png'.format(projectPath, stat, image, logType), format='png')
+
 
