@@ -30,8 +30,10 @@ for image, logs in kmeansStatistics.items():
     for logType in sorted(logs, key=lambda log: len(log)):
         if "PSNR" in logType:
             subplotIndex = 0
+            unit = ' [dB]'
         else:
             subplotIndex = 2
+            unit = ' [s]'
         for stat in logs[logType]:
             print(image + ', ' + logType + ', ' + stat + ', ' + str(subplotIndex))
             if "kmeans++" in logType:
@@ -44,6 +46,6 @@ for image, logs in kmeansStatistics.items():
             if "kmeans++" in logType:
                 logTypeShortcut = logType[len("kmeans++") + 1:]
                 plt.title(image + ': ' + logTypeShortcut + ' - ' + stat), plt.legend(['kmeans', 'kmeans++'])
-                plt.xlabel("Number of quantization levels"), plt.ylabel(logTypeShortcut), plt.grid(True)
+                plt.xlabel("Number of quantization levels"), plt.ylabel(logTypeShortcut + unit), plt.grid(True)
     # f.show()
     plt.savefig(r'{0}\stats\{1}_stat.png'.format(projectPath, image), format='png', bbox_inches='tight')
