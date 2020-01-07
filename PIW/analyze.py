@@ -44,7 +44,6 @@ for image, logs in kmeansStatistics.items():
             if "kmeans++" in logType:
                 logTypeShortcut = logType[len("kmeans++") + 1:]
                 plt.title(image + ': ' + logTypeShortcut + ' - ' + stat), plt.legend(['kmeans', 'kmeans++'])
-    f.show()
-    # plt.savefig(r'{0}\stats\{1}_{2}_{3}.png'.format(projectPath, stat, image, logType), format='png')
-
-
+                plt.xlabel("Number of quantization levels"), plt.ylabel(logTypeShortcut), plt.grid(True)
+    # f.show()
+    plt.savefig(r'{0}\stats\{1}_stat.png'.format(projectPath, image), format='png', bbox_inches='tight')
