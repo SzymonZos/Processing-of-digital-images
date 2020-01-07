@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/../../Bachelor-project/PC-STM-communication/.idea/PC-STM.iml" filepath="$PROJECT_DIR$/../../Bachelor-project/PC-STM-communication/.idea/PC-STM.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/PIW.iml" filepath="$PROJECT_DIR$/.idea/PIW.iml" />
     </modules>
   </component>
