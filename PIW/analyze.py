@@ -24,7 +24,6 @@ for logType, log in sortedLogs.items():
             .append(f"{statistics.stdev([float(value) for value in values]):.4}")
 
 x = [8, 16, 32, 64, 128, 256]
-
 for image, logs in kmeansStatistics.items():
     f = plt.figure(figsize=(12.8, 9.6), clear=True)
     for logType in sorted(logs, key=lambda log: len(log)):
@@ -47,5 +46,4 @@ for image, logs in kmeansStatistics.items():
                 logTypeShortcut = logType[len("kmeans++") + 1:]
                 plt.title(image + ': ' + logTypeShortcut + ' - ' + stat), plt.legend(['kmeans', 'kmeans++'])
                 plt.xlabel("Number of quantization levels"), plt.ylabel(logTypeShortcut + unit), plt.grid(True)
-    # f.show()
     plt.savefig(r'{0}\stats\{1}_stat.png'.format(projectPath, image), format='png', bbox_inches='tight')
